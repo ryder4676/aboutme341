@@ -6,8 +6,9 @@ const dotenv = require('dotenv');
 dotenv.config(); // Load environment variables from a .env file
 
 // Import the MongoClient from the MongoDB driver
-const { MongoClient } = require("mongodb");
-
+const {
+  MongoClient
+} = require("mongodb");
 async function main() {
   // Log the MongoDB connection URI retrieved from environment variables
   console.log(process.env.URI);
@@ -20,13 +21,10 @@ async function main() {
 
   // List the available databases on the connected MongoDB server
   await listDatabases(client);
-
   try {
     // Additional logic or error handling can be added here
-
   } catch (e) {
     console.log(e); // Log any errors that occur
-
   } finally {
     // Ensure the MongoDB client is closed when no longer needed
     await client.close();
@@ -36,7 +34,6 @@ async function main() {
   async function listDatabases(client) {
     // Retrieve a list of databases from the MongoDB server
     databasesList = await client.db().admin().listDatabases();
-
     console.log("Databases:");
     // Log the names of the available databases
     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
